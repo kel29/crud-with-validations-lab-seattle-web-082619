@@ -1,11 +1,20 @@
 <h1>Song form:</h1>
 <%= form_for(@song) do |f| %>
+  <% if @song.errors.any? %>
+    <h3>Errors:</h3>
+    <ul>
+      <% @song.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= f.label 'Song title: ' %>
   <%= f.text_field :title %><br>
   <%= f.label 'Song release status: ' %>
-  <%= f.text_field :released %><br>
+  <%= f.check_box :released %><br>
   <%= f.label 'Song release year: ' %>
-  <%= f.text_field :release_year %><br>
+  <%= f.number_field :release_year %><br>
   <%= f.label 'Song artist name: ' %>
   <%= f.text_field :artist_name %><br>
   <%= f.label 'Song genre: ' %>
